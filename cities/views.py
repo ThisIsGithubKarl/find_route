@@ -1,6 +1,9 @@
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
+from django.core.paginator import Paginator
 
 from cities.forms import HtmlForm, CityForm
 from cities.models import City
@@ -11,6 +14,7 @@ __all__ = (
     'CityCreateView',
     'CityUpdateView',
     'CityDeleteView',
+    'CityListView',
 )
 
 
@@ -32,7 +36,11 @@ def home(request, pk=None):
     form = CityForm()
 
     qs = City.objects.all()
-    context = {'objects_list': qs, 'form': form}
+    pg_list = Paginator(qs, 10)
+    page_number = request.GET.get('page')
+    page_obj = pg_list.get_page(page_number)
+
+    context = {'page_obj': page_obj, 'form': form}
     return render(request, "cities/home.html", context=context)
 
 
@@ -41,19 +49,33 @@ class CityDetailView(DetailView):
     template_name = "cities/details.html"
 
 
-class CityCreateView(CreateView):
+class CityCreateView(SuccessMessageMixin, CreateView):
     model = City
     form_class = CityForm
     template_name = 'cities/create.html'
+    success_url = reverse_lazy('cities:home')
+    success_message = "Город успешно создан"
 
 
-class CityUpdateView(UpdateView):
+class CityUpdateView(SuccessMessageMixin, UpdateView):
     model = City
     form_class = CityForm
     template_name = 'cities/update.html'
+    success_url = reverse_lazy('cities:home')
+    success_message = "Город успешно отредактирован"
 
 
 class CityDeleteView(DeleteView):
     model = City
     template_name = 'cities/delete.html'
     success_url = reverse_lazy('cities:home')
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "Город успешно удален")
+        return super().post(request, *args, **kwargs)
+
+
+class CityListView(ListView):
+    paginate_by = 2
+    model = City
+    template_name = 'cities/home.html'

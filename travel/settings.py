@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-87*xsdxvq_2tl2o9diuygnybld*@*dd5uj89$lykbq02wy^(@h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3582-37-212-53-207.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cities',
+    'trains',
+    'routes',
 ]
 
 MIDDLEWARE = [

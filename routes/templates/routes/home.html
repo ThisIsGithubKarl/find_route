@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% url 'routes:home' as routes_home_url %}
+
+{% block title %}Поиск маршрута{% endblock %}
+
+{% block content %}
+    <h1>Поиск маршрута</h1>
+    {% include 'form.html' with btn_value='Найти' action=routes_home_url %}
+{% endblock %}

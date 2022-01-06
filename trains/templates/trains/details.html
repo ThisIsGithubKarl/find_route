@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Поезд{% endblock %}
+
+{% block content %}
+    <h1>Поезд</h1>
+    <div class="row">
+        <div class="col-md">
+            <p>Название Поезда: {{ object.name }}</p>
+            <p>Пункт отправления: {{ object.from_city }}</p>
+            <p>Пункт назначения: {{ object.to_city }}</p>
+            <p>Время в пути: {{ object.travel_time }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'trains:home' %}"><button type="button" class="btn btn-outline-danger">Назад к списку</button></a>
+        </div>
+    </div>
+{% endblock %}

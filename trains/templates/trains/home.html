@@ -81,12 +81,17 @@
                             <a href="{% url 'trains:detail' pk=object.pk %}" class="text-decoration-none text-danger">{{ object.to_city }}</a></td>
                         <td>
                             <a href="{% url 'trains:detail' pk=object.pk %}" class="text-decoration-none text-danger">{{ object.travel_time }}</a></td>
-                        <td>
-                            <a href="{% url 'trains:update' pk=object.pk %}" class="text-decoration-none text-dark">Редактировать</a>
-                        </td>
-                        <td>
-                            <a href="{% url 'trains:delete' pk=object.pk %}" class="text-decoration-none text-dark">Удалить</a>
-                        </td>
+                        {% if user.is_authenticated %}
+                            <td>
+                                <a href="{% url 'trains:update' pk=object.pk %}" class="text-decoration-none text-dark">Редактировать</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'trains:delete' pk=object.pk %}" class="text-decoration-none text-dark">Удалить</a>
+                            </td>
+                        {% else %}
+                            <td>&nbsp</td>
+                            <td>&nbsp</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>
@@ -94,6 +99,6 @@
     </div>
 
     <a href="{% url 'trains:create' %}">
-        <button type="button" class="btn btn-outline-secondary mb-3">&#128931; Добавить запись</button>
+        <button type="button" class="btn btn-outline-secondary">&#128931; Добавить запись</button>
     </a>
 {% endblock %}

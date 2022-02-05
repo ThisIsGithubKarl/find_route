@@ -1,13 +1,12 @@
 from django.urls import path
 
-from cities.views import *
-from routes.views import RouteView
+from routes.views import *
 
 urlpatterns = [
-    # path('detail/<int:pk>/', CityDetailView.as_view(), name='detail'),
-    # path('update/<int:pk>', CityUpdateView.as_view(), name='update'),
-    # path('delete/<int:pk>', CityDeleteView.as_view(), name='delete'),
-    # path('create/', CityCreateView.as_view(), name='create'),
-    path('', RouteView.as_view(), name='home'),
-    # path('', home, name='home'),
+    path('detail/<int:pk>/', RouteDetailView.as_view(), name='detail'),
+    path('delete/<int:pk>/', RouteDeleteView.as_view(), name='delete'),
+    path('find/', RouteFindView.as_view(), name='find'),
+    path('create/', add_route, name='create'),
+    path('save/', save_route, name='save'),
+    path('', RouteListView.as_view(), name='home'),
 ]

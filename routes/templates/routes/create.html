@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Создание маршрута{% endblock %}
+
+{% block content %}
+    <h1>Создание Маршрута</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form action="{{ routes_save_url }}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <br>
+                <input type="submit" class="btn btn-danger" value="Сохранить">
+            </form>
+        </div>
+    </div>
+{% endblock %}

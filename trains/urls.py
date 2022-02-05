@@ -8,5 +8,4 @@ urlpatterns = [
     path('delete/<int:pk>', TrainDeleteView.as_view(), name='delete'),
     path('create/', TrainCreateView.as_view(), name='create'),
     path('', TrainListView.as_view(), name='home'),
-    # path('', home, name='home'),
 ]

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Маршрут{% endblock %}
+
+{% block content %}
+    <h1>Маршрут</h1>
+    <div class="row">
+        <div class="col-md">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <td>Название Маршрута</td>
+                    <td>Пункт отправления</td>
+                    <td>Пункт назначения</td>
+                    <td>Время в пути</td>
+                    <td>&nbsp</td>
+                </tr>
+                <tr>
+                    <td>{{ object.name }}</td>
+                    <td>{{ object.from_city }}</td>
+                    <td>{{ object.to_city }}</td>
+                    <td>{{ object.travel_time }}</td>
+                    <td>
+                        {% for train in object.trains.all %}
+                            <p>{{ train }}, время в пути: {{ train.travel_time }}</p>
+                        {% endfor %}
+                   </td>
+                    <td>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'routes:delete' pk=object.pk %}">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </a>
+                        {% else %}
+                            &nbsp
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'routes:home' %}"><button type="button" class="btn btn-outline-danger">Назад к списку</button></a>
+        </div>
+    </div>
+{% endblock %}

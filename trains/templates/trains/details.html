@@ -6,10 +6,20 @@
     <h1>Поезд</h1>
     <div class="row">
         <div class="col-md">
-            <p>Название Поезда: {{ object.name }}</p>
-            <p>Пункт отправления: {{ object.from_city }}</p>
-            <p>Пункт назначения: {{ object.to_city }}</p>
-            <p>Время в пути: {{ object.travel_time }}</p>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <td>Название Поезда</td>
+                    <td>Пункт отправления</td>
+                    <td>Пункт назначения</td>
+                    <td>Время в пути</td>
+                </tr>
+                <tr>
+                    <td>{{ object.name }}</td>
+                    <td>{{ object.from_city }}</td>
+                    <td>{{ object.to_city }}</td>
+                    <td>{{ object.travel_time }}</td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="row">

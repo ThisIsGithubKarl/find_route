@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Поиск маршрута{% endblock %}
+
+{% block content %}
+    <h1>Поиск маршрута</h1>
+
+    {% include 'form.html' with btn_value='Найти' action=routes_find_url %}
+
+    {% if ways %}
+        <div class="row mt-5">
+            <div class="col-md">
+                <h4>{{ cities.from_city.name }} - {{ cities.to_city.name  }}</h4>
+                {% for way in ways %}
+                    <br>
+                    <form action="{% url 'routes:create' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="from_city" value="{{ cities.from_city.id }}">
+                        <input type="hidden" name="to_city" value="{{ cities.to_city.id }}">
+                        <input type="hidden" name="total_time" value="{{ way.total_time }}">
+                        <input type="hidden" name="trains" value="{% for train in way.trains %}{{ train.id }},{% endfor %}">
+
+                        <h6>Время в пути: {{ way.total_time }} минут</h6>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Список Маршрутов по этому маршруту:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for train in way.trains %}
+                                    <tr class="table-light">
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ train }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <button type="submit" class="btn btn-danger">Сохранить</button>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

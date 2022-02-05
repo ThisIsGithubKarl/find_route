@@ -1,5 +1,11 @@
 {% url 'cities:home' as cities_home_url %}
 {% url 'trains:home' as trains_home_url %}
+{% url 'routes:home' as routes_home_url %}
+{% url 'routes:find' as routes_find_url %}
+{% url 'routes:save' as routes_save_url %}
+{% url 'accounts:login' as accounts_login_url %}
+{% url 'accounts:logout' as accounts_logout_url %}
+{% url 'accounts:registration' as accounts_register_url %}
 {% url 'about' as about_url %}
 
 <!DOCTYPE html>
@@ -12,9 +18,9 @@
         <title>{% block title %}Main{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-danger">
           <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">FindRoute</a>
+            <a class="navbar-brand" href="{% url 'find' %}">FindRoute</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,8 +33,23 @@
                   <a class="nav-link {% if request.path == trains_home_url %} active {% endif %}" aria-current="page" href="{% url 'trains:home' %}">Поезда</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link {% if request.path == routes_home_url %} active {% endif %}" aria-current="page" href="{% url 'routes:home' %}">Маршруты</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link {% if request.path == about_url %} active {% endif %}" href="{% url 'about' %}">О нас</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link {% if request.path == accounts_logout_url %} active {% endif %}" aria-current="page" href="{% url 'accounts:logout' %}">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link {% if request.path == accounts_login_url %} active {% endif %}" aria-current="page" href="{% url 'accounts:login' %}">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link {% if request.path == accounts_register_url %} active {% endif %}" aria-current="page" href="{% url 'accounts:registration' %}">Зарегистрироваться</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Dropdown
@@ -52,13 +73,13 @@
           </div>
         </nav>
 
-        <div class="container mt-2">
+        <div class="container mb-3" style="margin-top: 70px;">
             {% block content %}{% endblock %}
         </div>
 
         <div class="container">
             {% for message in messages %}
-                {% if message.level == DEFAULT_MESSAGE_LEVEL.ERROR %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from routes.views import home
+from routes.views import find
 from .views import about
 
 urlpatterns = [
@@ -24,6 +24,7 @@ urlpatterns = [
     path('cities/', include(('cities.urls', 'cities'))),
     path('trains/', include(('trains.urls', 'trains'))),
     path('routes/', include(('routes.urls', 'routes'))),
+    path('accounts/', include(('accounts.urls', 'accounts'))),
     path('about/', about, name='about'),
-    path('', home, name='home'),
+    path('', find, name='find'),
 ]

@@ -6144,3 +6144,4 @@ DEBUG 2022-02-04 22:45:11,600 utils 12204 2108 (0.000)
             WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
             ORDER BY name; args=None
 DEBUG 2022-02-04 22:45:11,604 utils 12204 2108 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+WARNING 2022-02-05 16:19:51,210 log 5872 7800 Bad Request: /

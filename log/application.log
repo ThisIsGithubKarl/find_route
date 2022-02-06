@@ -6145,3 +6145,28 @@ DEBUG 2022-02-04 22:45:11,600 utils 12204 2108 (0.000)
             ORDER BY name; args=None
 DEBUG 2022-02-04 22:45:11,604 utils 12204 2108 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
 WARNING 2022-02-05 16:19:51,210 log 5872 7800 Bad Request: /
+WARNING 2022-02-05 20:17:44,104 log 10544 14424 Not Found: /favicon.ico
+DEBUG 2022-02-05 20:22:25,444 utils 6404 6240 (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2022-02-05 20:22:25,448 utils 6404 6240 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2022-02-05 20:22:36,134 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" ORDER BY "cities_city"."name" ASC; args=()
+DEBUG 2022-02-05 20:22:36,145 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" ORDER BY "cities_city"."name" ASC; args=()
+DEBUG 2022-02-05 20:22:36,152 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" ORDER BY "cities_city"."name" ASC; args=()
+DEBUG 2022-02-05 20:22:38,324 utils 6404 12920 (0.000) SELECT COUNT(*) AS "__count" FROM "routes_route"; args=()
+DEBUG 2022-02-05 20:22:38,335 utils 6404 12920 (0.000) SELECT "routes_route"."id", "routes_route"."name", "routes_route"."travel_time", "routes_route"."from_city_id", "routes_route"."to_city_id" FROM "routes_route" INNER JOIN "cities_city" ON ("routes_route"."from_city_id" = "cities_city"."id") INNER JOIN "cities_city" T3 ON ("routes_route"."to_city_id" = T3."id") ORDER BY "cities_city"."name" ASC, T3."name" ASC LIMIT 4; args=()
+DEBUG 2022-02-05 20:22:38,337 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 5 LIMIT 21; args=(5,)
+DEBUG 2022-02-05 20:22:38,338 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 7 LIMIT 21; args=(7,)
+DEBUG 2022-02-05 20:22:38,339 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 5 LIMIT 21; args=(5,)
+DEBUG 2022-02-05 20:22:38,340 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 7 LIMIT 21; args=(7,)
+DEBUG 2022-02-05 20:22:38,341 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 5 LIMIT 21; args=(5,)
+DEBUG 2022-02-05 20:22:38,342 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 7 LIMIT 21; args=(7,)
+DEBUG 2022-02-05 20:22:38,344 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 7 LIMIT 21; args=(7,)
+DEBUG 2022-02-05 20:22:38,345 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 36 LIMIT 21; args=(36,)
+DEBUG 2022-02-05 20:22:39,656 utils 6404 12920 (0.000) SELECT "routes_route"."id", "routes_route"."name", "routes_route"."travel_time", "routes_route"."from_city_id", "routes_route"."to_city_id" FROM "routes_route" WHERE "routes_route"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2022-02-05 20:22:39,661 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 5 LIMIT 21; args=(5,)
+DEBUG 2022-02-05 20:22:39,662 utils 6404 12920 (0.000) SELECT "cities_city"."id", "cities_city"."name" FROM "cities_city" WHERE "cities_city"."id" = 7 LIMIT 21; args=(7,)
+DEBUG 2022-02-05 20:22:39,664 utils 6404 12920 (0.000) SELECT "trains_train"."id", "trains_train"."name", "trains_train"."from_city_id", "trains_train"."to_city_id", "trains_train"."travel_time" FROM "trains_train" INNER JOIN "routes_route_trains" ON ("trains_train"."id" = "routes_route_trains"."train_id") INNER JOIN "cities_city" ON ("trains_train"."from_city_id" = "cities_city"."id") INNER JOIN "cities_city" T5 ON ("trains_train"."to_city_id" = T5."id") WHERE "routes_route_trains"."route_id" = 2 ORDER BY "cities_city"."name" ASC, T5."name" ASC; args=(2,)
+WARNING 2022-02-05 20:22:47,578 log 6404 12920 Not Found: /routes/detail/2/3
+WARNING 2022-02-05 20:23:16,244 log 15804 6112 Not Found: /routes/detail/2/3
